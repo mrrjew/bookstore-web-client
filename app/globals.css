@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: white;
+  --foreground: #3A2C33;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f8f8fa;
+    --foreground: #3A2C33;
   }
 }
 
@@ -25,3 +25,19 @@ body {
     text-wrap: balance;
   }
 }
+
+  .block-heading {
+    @apply text-darks text-2xl font-semibold
+  }
+  
+  .input {
+    @apply w-full p-[18px] px-3 paragraph !text-darks/80 placeholder:text-darks/70 border-[0.5px] border-gray-200/60 bg-transparent focus:outline-tan
+  }
+  
+  .button {
+    @apply w-full shadow-xl shadow-cardinal/30 hover:bg-cardinal/90 my-8 rounded-full paragraph bg-cardinal !text-light p-4
+  }
+  
+  .paragraph {
+    @apply text-sm font-[550] text-gray-900/70
+  }
