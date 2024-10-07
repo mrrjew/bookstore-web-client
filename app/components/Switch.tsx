@@ -2,7 +2,13 @@
 
 import { Field, Label, Switch } from '@headlessui/react'
 
-export default function SwitchJsx({enabled,setEnabled,text, bracketText}:any) {
+type Props = {
+  enabled:boolean;
+  setEnabled:(value:boolean) => void;
+  text:string;
+  bracketText:string
+}
+export default function SwitchJsx({enabled,setEnabled,text, bracketText}:Props) {
 
   return (
     <Field className="flex items-center -mt-3.5 !font-medium paragraph">

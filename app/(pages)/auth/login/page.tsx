@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React from "react";
 import artwork from "@/app/assets/images/artwork.png";
 import google from "@/app/assets/images/google.png";
 import Image from "next/image"
@@ -31,11 +31,11 @@ export default function Page() {
         
         <button type="button" className="button">Sign in</button>
 
-        <p className="paragraph">Don't have an account yet? <Link href="/auth/register" className="!text-seagreen paragraph font-[600]"> Register</Link></p>
+        <p className="paragraph">Don{"\'"}t have an account yet? <Link href="/auth/register" className="!text-seagreen paragraph font-[600]"> Register</Link></p>
       </div>
      </div>
 
-     <div className="w-4/6 h-screen relative">
+     <div className="w-4/6 max-md:hidden h-screen relative">
        <Link href="/" className="absolute top-14 block-heading left-14 !text-light text-2xl">Kojo{"\'"}s Bookhub</Link>
         <Image src={artwork} objectFit="cover" alt="artwork" className="h-screen w-full"/>
        <p className="absolute bottom-8 left-14 !text-light paragraph">@joelit</p>
