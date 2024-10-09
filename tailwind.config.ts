@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily : {
+        libre:"var(--font-libre)",
+        geistMono:"var(--font-geist-mono)",
+        geistSans:"var(--font-geist-sans)"
+      },
       colors: {
         "light":"#f8f8fa",
         "darks":"#3A2C33",

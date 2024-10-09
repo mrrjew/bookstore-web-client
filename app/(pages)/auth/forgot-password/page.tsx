@@ -9,7 +9,7 @@ export default function Page() {
 
   return (
     <div className="flex  md:items-center md:justify-center font-var(--font-geist-mono) items-center h-screen w-full">
-      <div className="w-4/6 h-screen max-md:hidden">
+      <div className="w-4/6 h-screen font-libre max-md:hidden">
        <Link href="/" className="absolute top-14 block-heading left-14 !text-light text-2xl">Kojo{"\'"}s Bookhub</Link>
         <Image src={artwork} objectFit="cover" alt="artwork" className="h-screen w-full"/>
        <p className="absolute bottom-8 left-14 !text-light paragraph">@joelit</p>

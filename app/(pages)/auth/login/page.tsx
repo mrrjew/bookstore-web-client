@@ -35,7 +35,7 @@ export default function Page() {
       </div>
      </div>
 
-     <div className="w-4/6 max-md:hidden h-screen relative">
+     <div className="w-4/6 max-md:hidden h-screen font-libre relative">
        <Link href="/" className="absolute top-14 block-heading left-14 !text-light text-2xl">Kojo{"\'"}s Bookhub</Link>
         <Image src={artwork} objectFit="cover" alt="artwork" className="h-screen w-full"/>
        <p className="absolute bottom-8 left-14 !text-light paragraph">@joelit</p>
