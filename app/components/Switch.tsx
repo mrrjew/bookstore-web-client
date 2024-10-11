@@ -15,7 +15,7 @@ export default function SwitchJsx({enabled,setEnabled,text, bracketText}:Props) 
       <Switch
         checked={enabled}
         onChange={setEnabled}
-        className="group relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-seagreen-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-seagreen-600 focus:ring-offset-2 data-[checked]:bg-seagreen-600"
+        className={`group relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 ${enabled ? "focus:ring-seagreen" : "focus:ring-gray-200/80"} focus:ring-offset-2 ${enabled ? "bg-seagreen" : "bg-gray-200/80"}`}
       >
         <span
           aria-hidden="true"

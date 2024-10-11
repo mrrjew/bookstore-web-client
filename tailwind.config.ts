@@ -8,8 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage : {
+        'cream-pattern':"url('../app/assets/images/creampattern.jpeg')"
+      },
       fontFamily : {
         libre:"var(--font-libre)",
+        kathen:"var(--font-kathen)",
         geistMono:"var(--font-geist-mono)",
         geistSans:"var(--font-geist-sans)"
       },
