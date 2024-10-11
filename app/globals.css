@@ -26,6 +26,10 @@ body {
   }
 }
 
+  .container {
+    @apply max-w-7xl mx-auto
+  }
+
   .block-heading {
     @apply text-darks text-2xl font-semibold
   }
@@ -39,5 +43,5 @@ body {
   }
   
   .paragraph {
-    @apply text-sm font-[550] text-gray-900/70
+    @apply text-sm font-[500] text-gray-900/90
   }
