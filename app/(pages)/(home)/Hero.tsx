@@ -15,7 +15,7 @@ export default function Hero(){
               masterpieces, handpicked to captivate your imagination and expand
               your horizon. Whether you{"\'"}re seeking thrilling adventures,
               profound insights, or a cozy escape, our shelves await with the
-              stories you've been longing to uncover.{" "}
+              stories you{"\'"}ve been longing to uncover.{" "}
             </p>
 
             <Link href="/store" className="px-6 py-4 paragraph rounded-md flex items-center bg-gradient-to-l from-tan to-light hover:from-light hover:to-tan w-max transition-all duration-500 delay-150 ease-in-out">Find Your Next Read <MdArrowRightAlt /></Link>

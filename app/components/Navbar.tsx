@@ -94,7 +94,7 @@ export default function Navbar(){
           </div>
 
           {/* mobile nav */}
-          <div className="sm:w-0 w-full flex items-center justify-between py-6">
+          <div className="sm:hidden flex items-center justify-between py-6">
             <button type="button" onClick={() => toggleNav()}>
               <NavToggle show={show}/>
             </button>

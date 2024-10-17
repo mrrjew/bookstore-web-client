@@ -40,9 +40,6 @@ export default function Page() {
     //check if passwords match
     const [passwordsMatch,setPasswordsMatch] = useState<boolean | null>(null)
 
-    const checkPasswords = (pass:string) => {
-      formik.touched.password && pass === formik.values.password ? setPasswordsMatch(true) : setPasswordsMatch(false)
-    }
 
   return (
     <div className="flex items-center h-screen w-full">
@@ -73,7 +70,14 @@ export default function Page() {
             <input type="password" {...formik.getFieldProps("password")} className="input !border-b-0 rounded-t-lg mt-2 ring-t-transparent" placeholder="Password"/>
             {formik.touched.password && formik.errors.password ? <p className="paragraph !text-cardinal">{formik.errors.password}</p> : null}
             
-            <input type="password" onChange = {(e) => checkPasswords(e.target.value)} className="input rounded-b-lg" placeholder="Confirm Password"/>
+            <input type="password" onChange = {(e) => {
+(function() {
+  if (formik.touched.password && e.target.value === formik.values.password) {
+    setPasswordsMatch(true);
+  } else {
+    setPasswordsMatch(false);
+  }
+})();            }} className="input rounded-b-lg" placeholder="Confirm Password"/>
             {(passwordsMatch === true) ? <p className="paragraph !text-seagreen">Passwords match</p> :
             (passwordsMatch === false) ? <p className="paragraph !text-cardinal">Passwords do not match</p> : null}
         </form>
