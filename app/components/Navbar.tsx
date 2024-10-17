@@ -27,7 +27,7 @@ export default function Navbar(){
       >
         <div className="px-3.5 container">
           {/* first nav layer */}
-          <div className="flex max-sm:flex-col max-sm:gap-2 justify-between shadow-xs items-center py-2.5">
+          <div className="hidden sm:flex justify-between shadow-xs items-center py-2.5">
             <div className="flex gap-4 items-center">
               <Link href="#" className="">
                 Find a book here
@@ -56,7 +56,7 @@ export default function Navbar(){
           <div className="hidden sm:flex justify-between items-center py-6">
             {/* logo */}
 
-            <p className="block-heading !font-kathen">Joelit's Bookshub</p>
+            <p className="block-heading !font-kathen">Joelit{"\'"}s Bookshub</p>
 
             <div className="flex gap-12 items-center">
               {NAVIGATION.map((nav) => (
@@ -94,9 +94,9 @@ export default function Navbar(){
           </div>
 
           {/* mobile nav */}
-          <div className="sm:hidden flex items-center justify-between py-4">
+          <div className="sm:w-0 w-full flex items-center justify-between py-6">
             <button type="button" onClick={() => toggleNav()}>
-              <NavToggle />
+              <NavToggle show={show}/>
             </button>
             <p className="block-heading !font-kathen">JB</p>
 
@@ -105,7 +105,7 @@ export default function Navbar(){
 
           {/* display nav on toggle */}
           {show && (
-            <div className="flex flex-col w-full pt-10 pb-10 rounded-b-lg shadow-xl transition-transform ease-in-out delay-150 duration-300 shadow-light gap-12 justify-center items-center">
+            <div className="flex flex-col z-10 w-full pt-10 pb-10 rounded-b-lg shadow-xl transition-transform ease-in-out delay-150 duration-300 shadow-light gap-12 justify-center items-center">
               {NAVIGATION.map((nav) => (
                 <Link
                   key={nav.name}
@@ -119,8 +119,39 @@ export default function Navbar(){
                   {nav.name}
                 </Link>
               ))}
+
+              {
+                show && (
+                  <div className="flex flex-col justify-between shadow-xs items-center py-2.5">
+            <div className="flex gap-4 items-center">
+              <Link href="#" className="">
+                Find a book here
+              </Link>
+              <p className="flex items-center gap-2">
+                <PhoneArrowDownLeftIcon className="text-cardinal w-4 h-4" />
+                <span>+(233)-271-388-016</span>
+              </p>
+            </div>
+
+            {/* socials */}
+            <div className="flex gap-1.5 items-center">
+              {NAV_SOCIALS.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  className="paragraph w-4 h-4"
+                >
+                  {social.icon}
+                </Link>
+              ))}
+            </div>
+          </div>
+                )
+              }
             </div>
           )}
+
+      
         </div>
       </div>
     );
