@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage : {
-        'cream-pattern':"url('../app/assets/images/creampattern.jpeg')",
-        'books-collage':"url('../app/assets/images/books-collage.png')"
+        'cream-pattern':"url('../public/assets/images/creampattern.jpeg')",
+        'books-collage':"url('../public/assets/images/books-collage.png')"
       },
       fontFamily : {
         libre:"var(--font-libre)",
