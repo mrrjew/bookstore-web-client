@@ -1,6 +1,7 @@
 import Books from "./(pages)/(home)/Books";
 import Genres from "./(pages)/(home)/Genres";
 import Hero from "./(pages)/(home)/Hero";
+import Inspiration from "./(pages)/(home)/Inspiration";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero/>
       <Genres />
       <Books />
+      <Inspiration />
     </div>
   );
 }
