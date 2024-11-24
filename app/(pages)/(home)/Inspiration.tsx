@@ -1,13 +1,15 @@
-import Swiperrr from '@/app/components/Swiper'
-import { testimonials } from '@/app/data/testimonials'
-import React from 'react'
+// Inspiration.tsx
+import React from 'react';
+import Swiperrr from '@/app/components/Swiper';  // Ensure this path is correct
+import { testimonials } from '@/app/data/testimonials';
 
 export default function Inspiration() {
   return (
     <div className="my-12">
-        <h1 className='block-heading !text-center !text-3xl md:!text-5xl font-libre'>Be Inspired To Read More</h1>
-
-        <Swiperrr {...testimonials}/>
+      <h1 className='block-heading !text-center !text-3xl md:!text-5xl font-libre'>
+        Be Inspired To Read More
+      </h1>
+      <Swiperrr data={testimonials} />  {/* Correct data passing */}
     </div>
-  )
+  );
 }

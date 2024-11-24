@@ -1,6 +1,6 @@
-import { Data } from "../components/Swiper";
+import {Testimonial } from "../components/Swiper";
 
-export const testimonials:Data[] = [
+export const testimonials:Testimonial[] = [
     {
       content: "The books I purchased from Joelit Bookstore have completely changed my perspective on leadership. The insights are practical and applicable, helping me grow both personally and professionally.",
       profileImage: "https://example.com/profiles/sarah.jpg",
