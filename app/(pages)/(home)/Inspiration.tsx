@@ -7,7 +7,7 @@ export default function Inspiration() {
     <div className="my-12">
         <h1 className='block-heading !text-center !text-3xl md:!text-5xl font-libre'>Be Inspired To Read More</h1>
 
-        <Swiperrr data={testimonials}/>
+        <Swiperrr {...testimonials}/>
     </div>
   )
 }

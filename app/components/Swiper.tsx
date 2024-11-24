@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from 'react';
+import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -14,7 +14,12 @@ import '../styles/style.css'
 // import required modules
 import { Parallax, Pagination, Navigation } from 'swiper/modules';
 
-export default function Swiperrr({data}:any) {
+export type Data = {
+    content:string,
+    name: string,
+    profileImage: string
+}
+export default function Swiperrr(data:Data[]) {
   return (
     <>
       <Swiper
@@ -40,11 +45,11 @@ export default function Swiperrr({data}:any) {
           data-swiper-parallax="-23%"
         ></div>
         {
-            data?.map((d:any) => (
+            data?.map((d:Data) => (
 
-        <SwiperSlide>
+        <SwiperSlide key={d.content}>
           <div className="text text-2xl text-gray-700 shadow-sm" data-swiper-parallax="-100">
-            <p className='text-7xl font-geistMono'>"</p>
+            <p className='text-7xl font-geistMono'>{'\"'}</p>
             <p>
               {d.content}
             </p>
