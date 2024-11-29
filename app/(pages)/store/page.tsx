@@ -18,9 +18,11 @@ export default function Page() {
 
   // Effect to synchronize localStorage and state with URL query params
   useEffect(() => {
+    if (typeof window !== 'undefined') {
     const storedGenre = localStorage.getItem('name') || 'All';
     setSelectedGenre(storedGenre);
     localStorage.setItem('name', name);
+    }
   }, [name]);
 
   // Filter books based on selected genre

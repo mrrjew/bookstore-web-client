@@ -33,7 +33,7 @@ export const NAV_SOCIALS:NavSoials[] = [
     }
 ]
 
-export const NAV_ICONS: Partial<NavSoials>[] = [
+export const NAV_ICONS: NavSoials[] = [
   {
     name: "Search",
     href: "#",
