@@ -22,7 +22,7 @@ export default function Books() {
 
         </div>
 
-        <div className='relative my-8 w-screen h-max overflow-x-scroll '>
+        <div className='relative my-8 w-screen h-max overflow-x-scroll scrollbar'>
           <div className="flex gap-14  books w-max mt-12">
             {
               books.map((book) => (

@@ -38,10 +38,10 @@ export default function Swiperrr({ data }: SwiperrrProps) {  // Destructure the 
       <div
         slot="container-start"
         className="parallax-bg"
-        style={{
-          backgroundImage:
-            'url(https://imgs.search.brave.com/cs5mGDvs8j1SEqtU9F_ZmT4xA0voTd6bJzx-nDNYMck/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzQ4L2Ni/L2UzLzQ4Y2JlMzdj/NGE1MDk1YzIxMWU2/MzAzOWQ2NmI0NTJh/LmpwZw)'
-        }}
+        // style={{
+        //   backgroundImage:
+        //     'url(https://imgs.search.brave.com/cs5mGDvs8j1SEqtU9F_ZmT4xA0voTd6bJzx-nDNYMck/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzQ4L2Ni/L2UzLzQ4Y2JlMzdj/NGE1MDk1YzIxMWU2/MzAzOWQ2NmI0NTJh/LmpwZw)'
+        // }}
         data-swiper-parallax="-23%"
       ></div>
       {data.map((testimonial) => (

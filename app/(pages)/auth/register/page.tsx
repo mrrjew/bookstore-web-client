@@ -1,9 +1,6 @@
 "use client"
 
 import React, { useState } from "react";
-import artwork from "@/app/assets/images/artwork.png";
-import google from "@/app/assets/images/google.png";
-import Image from "next/image"
 import Link from "next/link";
 import SwitchJsx from "@/app/components/Switch";
 import {useFormik} from "formik"
@@ -45,7 +42,7 @@ export default function Page() {
     <div className="flex items-center h-screen w-full">
       <div className="w-4/6 h-screen font-kathen max-md:hidden relative">
        <Link href="/" className="absolute top-14 block-heading left-14 !text-light text-2xl">Kojo{"\'"}s Bookhub</Link>
-        <Image src={artwork} objectFit="cover" alt="artwork" className="h-screen w-full"/>
+        <img src='/assets/images/artwork.png' alt="artwork" className="h-screen w-full"/>
        <p className="absolute bottom-8 left-14 !text-light paragraph">@joelit</p>
       </div>
     
@@ -56,7 +53,7 @@ export default function Page() {
         <p className="paragraph !text-center">Sign up to get access to 200k+ premium books</p>
 
         <button type="button" className="p-2.5 my-2.5 w-full justify-center rounded-full flex items-center gap-4 border-[0.5px] border-gray-200/80">
-            <Image src={google} alt="google" className="w-8 h-8"/>
+            <img src='/assets/images/google.png' alt="google" className="w-8 h-8"/>
             <p className="paragraph !font-normal"> Sign up with Google</p>
         </button>
 

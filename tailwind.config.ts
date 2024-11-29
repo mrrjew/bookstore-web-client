@@ -19,7 +19,7 @@ const config: Config = {
         geistSans:"var(--font-geist-sans)"
       },
       colors: {
-        "light":"#f8f8fa",
+        "light":"#ffffff",
         "darks":"#3A2C33",
         "tan": "#D2B794",
         "seagreen":"#519872",

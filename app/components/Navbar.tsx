@@ -7,24 +7,37 @@ import { PhoneArrowDownLeftIcon } from "@heroicons/react/16/solid"
 import { IoSearch } from "react-icons/io5";
 import { NAV_ICONS, NAV_SOCIALS, NAVIGATION } from "../data/navigation"
 import NavToggle from "./NavToggle"
+import Search from "./Search"
 
 export default function Navbar(){
     const pathname = usePathname()
     console.log(pathname)
 
-    const isLoggedIn = true
+    const isLoggedIn = false
 
     // function to toggle nav list
     const [show,setShow] = useState<boolean>(false)
     const toggleNav = () => {
       setShow((prev) => !prev)
     }
+
+    //show search nav
+    const [show_search_nav,set_show_search_nav] = useState<boolean>(false)
+    localStorage.setItem('show_search_nav',show_search_nav.toString())
+
+    const ShowSearchNav = () => {
+      set_show_search_nav(prev => !prev)
+      localStorage.setItem('show_search_nav',show_search_nav.toString())
+    }
+
     return (
       <div
         className={`${
           pathname.includes("auth") ? "hidden" : "block"
         } paragraph w-full bg-light `}
       >
+        {/* search nav */}
+        {show_search_nav  &&  <Search/>}
         <div className="px-3.5 container">
           {/* first nav layer */}
           <div className="hidden sm:flex justify-between shadow-xs items-center py-2.5">
@@ -56,7 +69,7 @@ export default function Navbar(){
           <div className="hidden sm:flex justify-between items-center py-6">
             {/* logo */}
 
-            <p className="block-heading !font-kathen">Joelit{"\'"}s Bookshub</p>
+            <Link href="/" className="block-heading !font-kathen">Joelit{"\'"}s Bookshub</Link>
 
             <div className="flex gap-12 items-center">
               {NAVIGATION.map((nav) => (
@@ -82,7 +95,7 @@ export default function Navbar(){
               <div className="flex gap-3.5 text-lg items-center ">
                 {NAV_ICONS.map((icon) =>
                   icon.name?.toLocaleLowerCase() == "search" ? (
-                    <button key={icon.name}>{icon.icon}</button>
+                    <button onClick={() => ShowSearchNav()} key={icon.name}>{icon.icon}</button>
                   ) : (
                     <Link href={icon.href ?? "#"} key={icon.name}>
                       {icon.icon}
@@ -90,7 +103,10 @@ export default function Navbar(){
                   )
                 )}
               </div>
-            ) : null}
+            ) : <div className="flex gap-2">
+                <Link href="/auth/register" className="py-2.5 px-2.5 rounded-sm bg-cardinal text-white">Get Started</Link>
+                <Link href="/auth/login" className="py-2.5 px-2.5 rounded-sm underline">log in</Link>
+              </div>}
           </div>
 
           {/* mobile nav */}
@@ -100,12 +116,12 @@ export default function Navbar(){
             </button>
             <p className="block-heading !font-kathen">JB</p>
 
-            <IoSearch className="w-6 h-6" />
+            <IoSearch className="w-6 h-6" onClick={() => ShowSearchNav()}/>
           </div>
 
           {/* display nav on toggle */}
           {show && (
-            <div className="flex flex-col z-10 w-full pt-10 pb-10 rounded-b-lg shadow-xl transition-transform ease-in-out delay-150 duration-300 shadow-light gap-12 justify-center items-center">
+            <div className="flex flex-col absolute top-[calc(100% - 20%)] left-0 bg-white w-full pt-10 pb-10 rounded-b-lg border-b-[0.1px] shadow-sm transition-all ease-in-out delay-150 duration-300 shadow-light gap-12 justify-center items-center">
               {NAVIGATION.map((nav) => (
                 <Link
                   key={nav.name}

@@ -1,9 +1,6 @@
 "use client"
 
 import React from "react";
-import artwork from "@/app/assets/images/artwork.png";
-import google from "@/app/assets/images/google.png";
-import Image from "next/image"
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup"
@@ -34,7 +31,7 @@ export default function Page() {
         <p className="paragraph">Sign in to continue reading your starred books</p>
 
         <button type="button" className="p-2.5 my-2.5 w-full justify-center rounded-full flex items-center border-[0.5px] border-gray-200/80">
-            <Image src={google} alt="google" className="w-8 h-8"/>
+            <img src='/assets/images/google.png' alt="google" className="w-8 h-8"/>
             <p className="paragraph !font-[400]"> Sign in with Google</p>
         </button>
 
@@ -55,7 +52,7 @@ export default function Page() {
 
      <div className="w-4/6 max-md:hidden h-screen font-kathen relative">
        <Link href="/" className="absolute top-14 block-heading left-14 !text-light text-2xl">Kojo{"\'"}s Bookhub</Link>
-        <Image src={artwork} objectFit="cover" alt="artwork" className="h-screen w-full"/>
+        <img src='/assets/images/artwork.png'alt="artwork" className="h-screen w-full"/>
        <p className="absolute bottom-8 left-14 !text-light paragraph">@joelit</p>
       </div>
     </div>

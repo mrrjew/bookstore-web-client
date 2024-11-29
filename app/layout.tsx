@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import {Libre_Bodoni} from "next/font/google"
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const libre = Libre_Bodoni({
   weight:["400","500"],
@@ -40,10 +41,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${kathen.variable} ${libre.variable} ${geistMono.variable} font-geistSans antialiased`}
+        className={`${geistSans.variable} ${kathen.variable} ${libre.variable} ${geistMono.variable} scrollbar bg-light font-geistSans antialiased`}
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
