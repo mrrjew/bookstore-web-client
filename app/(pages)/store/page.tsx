@@ -6,22 +6,23 @@ import { useSearchParams } from 'next/navigation';
 import { books } from '@/app/data/books';
 import Book from '@/app/components/Book';
 import Error from '@/app/components/Error';
+import { Suspense } from 'react';
 
-export default function Page() {
+function StorePageContent() {
   const tabs = [{ name: 'All', href: '/store?name=All', image: '' }, ...genres];
 
   const query = useSearchParams();
-  const name = query.get('name') || 'All';
+  const name = query?.get('name') || 'All';
 
   // State to store category
-  const [selectedGenre, setSelectedGenre] = useState<string>('All');
+  const [selectedGenre, setSelectedGenre] = useState('All');
 
-  // Effect to synchronize localStorage and state with URL query params
+  // Effect to synchronize state with URL query params and localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
-    const storedGenre = localStorage.getItem('name') || 'All';
-    setSelectedGenre(storedGenre);
-    localStorage.setItem('name', name);
+      const storedGenre = localStorage.getItem('name') || 'All';
+      setSelectedGenre(name);
+      localStorage.setItem('name', name);
     }
   }, [name]);
 
@@ -70,5 +71,14 @@ export default function Page() {
         )}
       </div>
     </div>
+  );
+}
+
+// Main export with Suspense wrapper
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <StorePageContent />
+    </Suspense>
   );
 }
