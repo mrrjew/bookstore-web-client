@@ -20,7 +20,7 @@ function StorePageContent() {
   // Effect to synchronize state with URL query params and localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const storedGenre = localStorage.getItem('name') || 'All';
+      localStorage.getItem('name') || 'All';
       setSelectedGenre(name);
       localStorage.setItem('name', name);
     }
