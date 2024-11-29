@@ -11,7 +11,7 @@ import Search from "./Search";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isLoggedIn = false; // Replace with real authentication state
+  const isLoggedIn = true; // Replace with real authentication state
 
   // States for navigation visibility
   const [showNav, setShowNav] = useState(false);
