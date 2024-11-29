@@ -68,7 +68,7 @@ export default function Navbar() {
         {/* Main Navigation */}
         <div className="hidden sm:flex justify-between items-center py-6">
           {/* Logo */}
-          <Link href="/" className="block-heading !font-kathen">Joelit's Bookshub</Link>
+          <Link href="/" className="block-heading !font-kathen">Joelit{'\''}s Bookshub</Link>
 
           {/* Navigation Links */}
           <div className="flex gap-12 items-center">
