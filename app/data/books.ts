@@ -2,6 +2,7 @@ import { Books } from "../types/books";
 
 export const books:Books[] = [
   {
+    _id:"1",
     title:"The Power of the Subconsious Mind",
     author:"Joshua L. Groff",
     image:"/assets/images/subconscious.jpg",
@@ -16,6 +17,7 @@ export const books:Books[] = [
     language:"English",
   },
   {
+    _id:"2",
     title:"48 Laws of Power",
     author:"Robert Greene",
     image:"/assets/images/48laws.png",
@@ -31,6 +33,7 @@ export const books:Books[] = [
   },
   
   {
+    _id:"3",
     title:"Think and Grow Rich",
     author:"Napoleon Hill",
     image:"/assets/images/think-grow.jpg",
@@ -45,6 +48,7 @@ export const books:Books[] = [
     language:"English",
   },
   {
+    _id:"4",
     title:"The Subtle Art of Not Giving a Fuck",
     author:"Mark Manson",
     image:"/assets/images/fuck.jpeg",
@@ -60,6 +64,7 @@ export const books:Books[] = [
   },
   
   {
+    _id:"5",
     title:"Think and Grow Rich",
     author:"Napoleon Hill",
     image:"/assets/images/think-grow.jpg",
@@ -75,6 +80,7 @@ export const books:Books[] = [
   },
 
   {
+    _id:"6",
     title:"Think and Grow Rich",
     author:"Napoleon Hill",
     image:"/assets/images/think-grow.jpg",
@@ -88,4 +94,55 @@ export const books:Books[] = [
     pages:246,
     language:"English",
   },
+]
+
+
+
+export const cartBooks:Books[] = [
+  {
+    _id:"1",
+    title:"The Power of the Subconsious Mind",
+    author:"Joshua L. Groff",
+    image:"/assets/images/subconscious.jpg",
+    description:"The Power of the Subconsious Mind is a book that explores the subconscious mind",
+    price:1000,
+    category:"Science",
+    countInStock:10,
+    rating:4.5,
+    numReviews:10,
+    isNew:true,
+    pages:246,
+    language:"English",
+  },
+  {
+    _id:"2",
+    title:"48 Laws of Power",
+    author:"Robert Greene",
+    image:"/assets/images/48laws.png",
+    description:"48 laws of power teaches about human nature and how to manipulate it to your needs.",
+    price:890,
+    category:"Psychology",
+    countInStock:13,
+    rating:4.5,
+    numReviews:10,
+    isNew:true,
+    pages:246,
+    language:"English",
+  },
+  
+  {
+    _id:"3",
+    title:"Think and Grow Rich",
+    author:"Napoleon Hill",
+    image:"/assets/images/think-grow.jpg",
+    description:"You are already rich. You just need to learn how to make it a reality",
+    price:1000,
+    category:"Psychology",
+    countInStock:13,
+    rating:4.5,
+    numReviews:10,
+    isNew:true,
+    pages:246,
+    language:"English",
+  } 
 ]

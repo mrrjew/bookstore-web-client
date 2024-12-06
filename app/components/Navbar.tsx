@@ -11,27 +11,23 @@ import Search from "./Search";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isLoggedIn = true; // Replace with real authentication state
+  const isLoggedIn = true; 
 
-  // States for navigation visibility
   const [showNav, setShowNav] = useState(false);
   const [showSearchNav, setShowSearchNav] = useState(false);
 
-  // Initialize search visibility state from localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedSearchNav = localStorage.getItem('show_search_nav');
-      setShowSearchNav(storedSearchNav === 'true'); // Default to false if null
+      setShowSearchNav(storedSearchNav === 'true');
     }
   }, []);
 
-  // Toggle functions
   const toggleNav = () => setShowNav(prev => !prev);
 
   const toggleSearchNav = () => {
     setShowSearchNav((prev) => {
       const newState = !prev;
-      // Only set localStorage if available
       if (typeof window !== 'undefined') {
         localStorage.setItem('show_search_nav', newState.toString());
       }
@@ -114,7 +110,7 @@ export default function Navbar() {
 
         {/* Mobile Dropdown Nav */}
         {showNav && (
-          <div className="flex flex-col absolute top-full left-0 bg-white w-full pt-10 pb-10 rounded-b-lg shadow-light gap-12 justify-center items-center">
+          <div className="md:hidden z-10 flex flex-col absolute max-sm:top-16 max-md:top-22 left-0 bg-white w-full pt-10 pb-10 rounded-b-lg shadow-light gap-12 justify-center items-center">
             {NAVIGATION.map((nav) => (
               <Link key={nav.name} href={nav.href} className={`${pathname === nav.href ? "text-cardinal" : ""}`}>
                 {nav.name}

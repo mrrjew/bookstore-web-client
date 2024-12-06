@@ -41,12 +41,12 @@ export const NAV_ICONS: NavSoials[] = [
   },
   {
     name: "Wishlist",
-    href: "/user/wishlist",
+    href: "/wishlist",
     icon: <GrFavorite />,
   },
   {
     name: "Cart",
-    href: "/user/cart",
+    href: "/cart",
     icon: <FiShoppingCart />,
   },
 ];

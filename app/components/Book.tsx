@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 
  export default function Book({
+    _id,
     title,
     author,
     image,
@@ -40,7 +41,7 @@ import Link from 'next/link';
                  <FiStar className='cursor-pointer' />
                </div>
 
-               <Link href="" className='button !rounded-lg !py-2.5 !my-0 !mt-2.5'>View Book</Link>
+               <Link href={`/store/${_id}`} className='button !rounded-lg !py-2.5 !my-0 !mt-2.5'>View Book</Link>
             </div>
          </div>
        </div>

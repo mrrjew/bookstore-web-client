@@ -1,6 +1,7 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export type Books=  {
+    _id:string,
     title:string,
     author:string,
     image:string | StaticImport,
