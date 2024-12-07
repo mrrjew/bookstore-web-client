@@ -22,7 +22,7 @@ export default function Search(){
     
     const hideSearch = () => {
         localStorage.removeItem('show_search_nav')
-        searchParams.query == '' && window.location.reload()
+        return searchParams.query == '' && window.location.reload()
     }
   return (
     <div className='absolute flex items-center justify-center'>

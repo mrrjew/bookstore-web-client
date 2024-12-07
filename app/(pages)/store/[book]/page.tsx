@@ -1,29 +1,11 @@
 'use client'
 
-import { useState } from 'react'
 import { CheckIcon, QuestionMarkCircleIcon, StarIcon } from '@heroicons/react/20/solid'
-import { Radio, RadioGroup } from '@headlessui/react'
 import { ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { books } from '@/app/data/books'
 import { useParams } from 'next/navigation'
 
-const _book = {
-  name: 'Everyday Ruck Snack',
-  href: '#',
-  price: '$220',
-  description:
-    "Don't compromise on snack-carrying capacity with this lightweight and spacious bag. The drawstring top keeps all your favorite chips, crisps, fries, biscuits, crackers, and cookies secure.",
-  imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/_book-page-04-featured-_book-shot.jpg',
-  imageAlt: 'Model wearing light green backpack with black canvas straps and front zipper pouch.',
-  breadcrumbs: [
-    { id: 1, name: 'Travel', href: '#' },
-    { id: 2, name: 'Bags', href: '#' },
-  ],
-  sizes: [
-    { name: '18L', description: 'Perfect for a reasonable amount of snacks.' },
-    { name: '20L', description: 'Enough room for a serious amount of snacks.' },
-  ],
-}
+
 const reviews = { average: 4, totalCount: 1624 }
 
 function classNames(...classes: string[]) {

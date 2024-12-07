@@ -1,12 +1,10 @@
 'use client'
 
-import { Fragment, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
 import {cartBooks as books} from "@/app/data/books"
 
 export default function Example() {
-  const [open, setOpen] = useState(false)
 
   return (
     <div className="bg-white">

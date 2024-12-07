@@ -1,13 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
-import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
+import { CheckIcon, ClockIcon } from '@heroicons/react/20/solid'
 import {cartBooks as books} from "@/app/data/books"
-import { useParams } from 'next/navigation'
 
 export default function Book() {
-  const [open, setOpen] = useState(false)
 
   return (
     <div className="bg-white">
@@ -22,7 +18,7 @@ export default function Book() {
             </h2>
 
             <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
-              {books.map((book, bookIdx) => (
+              {books.map((book) => (
                 <li key={book._id} className="flex py-6 sm:py-10">
                   <div className="shrink-0">
                     <img
