@@ -104,8 +104,30 @@ export default function Navbar() {
           <button type="button" onClick={toggleNav} aria-label="Toggle navigation">
             <NavToggle show={showNav} />
           </button>
-          <p className="block-heading !font-kathen">JB</p>
-          <IoSearch className="w-6 h-6" onClick={toggleSearchNav} aria-label="Toggle search" />
+          <Link href='/' className="block-heading !font-kathen">JB</Link>
+          
+          <div className="flex">
+          {isLoggedIn ? (
+            <div className="flex gap-3.5 text-lg items-center">
+              {NAV_ICONS.map((icon) => (
+                icon.name.toLowerCase() === "search" ? (
+                  <button onClick={toggleSearchNav} key={icon.name} aria-label="Toggle search">
+                    {icon.icon}
+                  </button>
+                ) : (
+                  <Link href={icon.href ?? "#"} key={icon.name} aria-label={icon.name}>
+                    {icon.icon}
+                  </Link>
+                )
+              ))}
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Link href="/auth/register" className="py-2.5 px-2.5 rounded-sm bg-cardinal text-white">Get Started</Link>
+              <Link href="/auth/login" className="py-2.5 px-2.5 rounded-sm underline">Log in</Link>
+            </div>
+          )}
+          </div>
         </div>
 
         {/* Mobile Dropdown Nav */}

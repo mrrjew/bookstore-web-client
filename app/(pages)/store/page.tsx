@@ -30,7 +30,7 @@ function StorePageContent() {
   // Filter books based on selected genre
   const booksReturned = selectedGenre === 'All'
     ? books
-    : books.filter(book => book.category.toLowerCase() === selectedGenre.toLowerCase());
+    : books.filter(book => book.category.toLowerCase().includes(selectedGenre.toLowerCase()));
 
   return (
     <div className='scrollbar'>

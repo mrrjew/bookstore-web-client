@@ -31,7 +31,6 @@ export default function Swiperrr({ data }: SwiperrrProps) {  // Destructure the 
       speed={600}
       parallax={true}
       pagination={{ clickable: true }}
-      navigation={true}
       modules={[Parallax, Pagination, Navigation]}
       className="mySwiper"
     >
