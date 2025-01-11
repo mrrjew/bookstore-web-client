@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { PhoneArrowDownLeftIcon } from "@heroicons/react/16/solid";
-import { IoSearch } from "react-icons/io5";
 import { NAV_ICONS, NAV_SOCIALS, NAVIGATION } from "../data/navigation";
 import NavToggle from "./NavToggle";
 import Search from "./Search";
