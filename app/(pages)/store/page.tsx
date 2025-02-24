@@ -21,16 +21,18 @@ function StorePageContent() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const local = localStorage.getItem('name') || 'All';
-      console.log(local)
       setSelectedGenre(name);
       localStorage.setItem('name', name);
     }
   }, [name]);
-
+  
   // Filter books based on selected genre
   const booksReturned = selectedGenre === 'All'
-    ? books
-    : books.filter(book => book.category.toLowerCase().includes(selectedGenre.toLowerCase()));
+  ? books
+  : books.filter(book => {
+    return selectedGenre.toLowerCase().split(" ").join('').includes(book.category.toLowerCase().split(" ").join(''))
+  });
+
 
   return (
     <div className='scrollbar'>
@@ -46,7 +48,7 @@ function StorePageContent() {
               href={genre.href}
               key={index}
               className={`${
-                selectedGenre === genre.name ? 'bg-cardinal text-white' : ''
+                selectedGenre === genre.name ? 'bg-cardinal !text-slate-50' : ''
               } px-3.5 py-2 ring-1 ring-inset ring-gray-200/80 hover:ring-gray-200 transition-all duration-300 ease-in-out max-sm:-my-1 my-1 flex items-center gap-3 rounded-lg`}
             >
               {genre.name !== 'All' && (

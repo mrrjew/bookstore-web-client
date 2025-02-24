@@ -17,33 +17,42 @@ import Link from 'next/link';
     language,
  }:Books) {
   return (
-    <div className='w-80 h-max pb-8 rounded-lg shadow-sm bg-white px-6 py-3.5 flex flex-col' >
-      <div className="w-full rounded-lg">
+    <div className='w-80 h-max pb-8 rounded-lg shadow-sm bg-white px-2 py-3.5 flex flex-col' >
+      <Link href={`/store/${_id}`} className="w-full rounded-lg">
        <Image src={image} alt={title} className='w-full h-[250px] rounded-lg' width={100} height={100}/>
-      </div>
+      </Link>
 
-       <div className="flex flex-col space-y-4 mt-3.5">
-         <h1 className='block-heading'>{title}</h1>
-         <i className='font-italic text-gray-600'>_{author}</i>
-         <p>{description}</p>
-
+       <div className="flex flex-col space-y-2  mt-3.5">
+        <div className="flex justify-between items-center">
+         <h1 className='font-bold text-lg leading-[20px] !text-gray-700/90'>{title}</h1>
+          <p className='font-bold text-lg leading-[20px] flex tracking-tight text-cardinal text-nowrap'>$ {price}</p>
+        </div>
+         <p className='text-gray-700/50 font-[600]'>{author}</p>
          <div className="flex items-center justify-between">
            <div className="flex flex-col">
-              <p className='block-heading !text-3xl tracking-tight !font-bold my-2'>$ {price}</p>
               <p className='text-sm'>{pages} pages</p>
-              <p className='text-sm font-semibold'>{language}</p>
+              <p className='text-sm font-semibold'>{language}</p> 
            </div>
 
-            <div className='flex flex-col mt-2.5 gap-2 text-xl text-gray-600'>
-               <div className="flex w-full justify-around ">
-                 <GrFavorite className='cursor-pointer'/>
-                 <FiShoppingCart className='cursor-pointer'/>
-                 <FiStar className='cursor-pointer' />
-               </div>
+            <div className="flex gap-3 ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="cursor-pointer text-cardinal/40 size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+            </svg>
 
-               <Link href={`/store/${_id}`} className='button !rounded-lg !py-2.5 !my-0 !mt-2.5'>View Book</Link>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="cursor-pointer text-purple-600/60 size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="cursor-pointer text-blue-500/50 text-xl size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+
             </div>
+
          </div>
+         <p>{description}</p>
+
+        <button className='mt-2.5 button flex items-center !bg-gradient-to-br hover:!bg-gradient-to-tl transition-all duration-200 ease-in-out !from-cardinal !to-purple-700/40 justify-center gap-3 text-lg !text-white'> <FiShoppingCart className='cursor-pointer'/> Add to Cart</button>
        </div>
     </div>
   )

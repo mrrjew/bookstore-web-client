@@ -63,7 +63,7 @@ export default function Navbar() {
         {/* Main Navigation */}
         <div className="hidden sm:flex justify-between items-center py-6">
           {/* Logo */}
-          <Link href="/" className="block-heading !font-kathen">Joelit{'\''}s Bookshub</Link>
+          <Link href="/" className="block-heading !font-kathen">Megabooks</Link>
 
           {/* Navigation Links */}
           <div className="flex gap-12 items-center">
@@ -103,7 +103,7 @@ export default function Navbar() {
           <button type="button" onClick={toggleNav} aria-label="Toggle navigation">
             <NavToggle show={showNav} />
           </button>
-          <Link href='/' className="block-heading !font-kathen">JB</Link>
+          <Link href='/' className="block-heading !font-kathen">MB</Link>
           
           <div className="flex">
           {isLoggedIn ? (
@@ -133,7 +133,7 @@ export default function Navbar() {
         {showNav && (
           <div className="md:hidden z-10 flex flex-col absolute max-sm:top-16 max-md:top-22 left-0 bg-white w-full pt-10 pb-10 rounded-b-lg shadow-light gap-12 justify-center items-center">
             {NAVIGATION.map((nav) => (
-              <Link key={nav.name} href={nav.href} className={`${pathname === nav.href ? "text-cardinal" : ""}`}>
+              <Link key={nav.name} href={nav.href} className={`${pathname.includes(nav.href) ? "text-cardinal" : ""}`}>
                 {nav.name}
               </Link>
             ))}

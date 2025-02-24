@@ -34,7 +34,7 @@ export const books:Books[] = [
   
   {
     _id:"3",
-    title:"Think and Grow Rich",
+    title:"Think and Grow Rich2",
     author:"Napoleon Hill",
     image:"/assets/images/think-grow.jpg",
     description:"You are already rich. You just need to learn how to make it a reality",
@@ -65,7 +65,7 @@ export const books:Books[] = [
   
   {
     _id:"5",
-    title:"Think and Grow Rich",
+    title:"Think and Grow Rich3",
     author:"Napoleon Hill",
     image:"/assets/images/think-grow.jpg",
     description:"You are already rich. You just need to learn how to make it a reality",
@@ -132,7 +132,7 @@ export const cartBooks:Books[] = [
   
   {
     _id:"3",
-    title:"Think and Grow Rich",
+    title:"Think and Grow Rich1",
     author:"Napoleon Hill",
     image:"/assets/images/think-grow.jpg",
     description:"You are already rich. You just need to learn how to make it a reality",

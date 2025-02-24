@@ -10,12 +10,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #f8f8fa;
-    --foreground: #3A2C33;
+    --foreground: #d3d1d1;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: rgb(156, 156, 156);
   background: white;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -67,4 +67,7 @@ body {
   }
   .paragraph {
     @apply text-sm font-[500] text-gray-900/90
+  }
+  .icon {
+    @apply bg-gradient-to-br from-cardinal to-purple-700 bg-clip-text text-transparent text-xl
   }
