@@ -1,18 +1,11 @@
-// Swiperrr.tsx
 "use client";
 
-import React from 'react';
-// Import Swiper React components
+import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
 import '../styles/style.css';
-
-// Import required modules
 import { Parallax, Pagination, Navigation } from 'swiper/modules';
 
 export type Testimonial = {
@@ -22,36 +15,47 @@ export type Testimonial = {
 };
 
 type SwiperrrProps = {
-  data: Testimonial[];  // Corrected prop type
+  data: Testimonial[];
 };
 
-export default function Swiperrr({ data }: SwiperrrProps) {  // Destructure the data prop
+export default function Swiperrr({ data }: SwiperrrProps) {
+  const swiperRef = useRef(null);
+
   return (
-    <Swiper
-      speed={600}
-      parallax={true}
-      pagination={{ clickable: true }}
-      modules={[Parallax, Pagination, Navigation]}
-      className="mySwiper"
-    >
-      <div
-        slot="container-start"
-        className="parallax-bg"
-        // style={{
-        //   backgroundImage:
-        //     'url(https://imgs.search.brave.com/cs5mGDvs8j1SEqtU9F_ZmT4xA0voTd6bJzx-nDNYMck/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzQ4L2Ni/L2UzLzQ4Y2JlMzdj/NGE1MDk1YzIxMWU2/MzAzOWQ2NmI0NTJh/LmpwZw)'
-        // }}
-        data-swiper-parallax="-23%"
-      ></div>
-      {data.map((testimonial) => (
-        <SwiperSlide key={testimonial.content}>
-          <div className="text text-2xl text-gray-700 shadow-sm" data-swiper-parallax="-100">
-            <p className='text-7xl font-geistMono'>{'\"'}</p>
-            <p>{testimonial.content}</p>
-            <p className='!text-xl font-italic'>— {testimonial.name}</p>  {/* Fixed dash and italic class */}
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="swiper-container">
+      <Swiper
+        ref={swiperRef}
+        speed={600}
+        parallax={true}
+        pagination={{ clickable: true, el: '.custom-pagination' }}
+        navigation={{ nextEl: '.custom-next', prevEl: '.custom-prev' }}
+        modules={[Parallax, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        <div
+          slot="container-start"
+          className="parallax-bg"
+          data-swiper-parallax="-23%"
+        ></div>
+        {data.map((testimonial, index) => (
+          <SwiperSlide key={index}>
+            <div className="text text-2xl text-gray-700" data-swiper-parallax="-100">
+              <p className='text-7xl font-geistMono'>{'\"'}</p>
+              <p>{testimonial.content}</p>
+              <p className='!text-xl font-italic'>— {testimonial.name}</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Custom Navigation Buttons */}
+      <div className="custom-navigation">
+        <button className="custom-prev !rounded-md">Previous</button>
+        <button className="custom-next !rounded-md !shadow-md">Next</button>
+      </div>
+
+      {/* Custom Pagination */}
+      <div className="custom-pagination swiper-pagination"></div>
+    </div>
   );
 }

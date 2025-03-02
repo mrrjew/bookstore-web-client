@@ -40,6 +40,47 @@ body {
   background: #c0a0b9;
 }
 
+.custom-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.custom-prev, .custom-next {
+  background-color: #ffffff;
+  color: #000;
+  padding: 10px;
+  border: none;
+  border-radius: 100%;
+  box-shadow: 0px 5px 15px rgba(207, 206, 206, 0.377);
+  cursor: pointer;
+}
+
+.custom-prev:hover, .custom-next:hover {
+  background-color: #fafafaea;
+}
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin: 0 20px;
+}
+
+.custom-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #007bff;
+  margin: 20px 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background-color: #0056b3;
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -66,7 +107,7 @@ body {
     @apply text-lg/8 text-gray-600 text-balance
   }
   .paragraph {
-    @apply text-sm font-[500] text-gray-900/90
+    @apply text-sm font-[500] text-gray-900/60
   }
   .icon {
     @apply bg-gradient-to-br from-cardinal to-purple-700 bg-clip-text text-transparent text-xl

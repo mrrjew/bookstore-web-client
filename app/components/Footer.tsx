@@ -72,7 +72,7 @@ export default function Example() {
             </a>
           ))}
         </div>
-        <p className="mt-10 text-center text-sm/6 text-gray-600">&copy; 2024 Your Company, Inc. All rights reserved.</p>
+        <p className="mt-10 text-center text-sm/6 text-gray-600">&copy; 2024 Megabooks, Inc. All rights reserved.</p>
       </div>
     </footer>
   )

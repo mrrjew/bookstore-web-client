@@ -9,10 +9,10 @@ import Error from '@/app/components/Error';
 import { Suspense } from 'react';
 
 function StorePageContent() {
-  const tabs = [{ name: 'All', href: '/store?name=All', image: '' }, ...genres];
+  const tabs = [{ search: 'All', href: '/store?search=All', image: '' }, ...genres];
 
   const query = useSearchParams();
-  const name = query?.get('name') || 'All';
+  const name = query?.get('search') || 'All';
 
   // State to store category
   const [selectedGenre, setSelectedGenre] = useState('All');
@@ -20,9 +20,8 @@ function StorePageContent() {
   // Effect to synchronize state with URL query params and localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const local = localStorage.getItem('name') || 'All';
       setSelectedGenre(name);
-      localStorage.setItem('name', name);
+      localStorage.setItem('search', name);
     }
   }, [name]);
   
@@ -48,13 +47,13 @@ function StorePageContent() {
               href={genre.href}
               key={index}
               className={`${
-                selectedGenre === genre.name ? 'bg-cardinal !text-slate-50' : ''
+                selectedGenre === genre.search ? 'bg-cardinal !text-slate-50' : ''
               } px-3.5 py-2 ring-1 ring-inset ring-gray-200/80 hover:ring-gray-200 transition-all duration-300 ease-in-out max-sm:-my-1 my-1 flex items-center gap-3 rounded-lg`}
             >
-              {genre.name !== 'All' && (
-                <img src={genre.image} alt={genre.name} className='w-8 h-8 rounded-lg'/>
+              {genre.search !== 'All' && (
+                <img src={genre.image} alt={genre.search} className='w-8 h-8 rounded-lg'/>
               )}
-              <h2>{genre.name}</h2>
+              <h2>{genre.search}</h2>
             </Link>
           ))}
         </div>
