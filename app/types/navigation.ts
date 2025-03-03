@@ -4,6 +4,7 @@ export type NavSoials = {
     name:string,
     href:string,
     icon: ReactElement<HTMLElement>
+    quantity?:number
 }
 
 export type Navigation = {

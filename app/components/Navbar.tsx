@@ -7,6 +7,7 @@ import { PhoneArrowDownLeftIcon } from "@heroicons/react/16/solid";
 import { NAV_ICONS, NAV_SOCIALS, NAVIGATION } from "../data/navigation";
 import NavToggle from "./NavToggle";
 import Search from "./Search";
+import Badge from "./Badge";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -77,15 +78,16 @@ export default function Navbar() {
 
           {/* Authenticated User Icons */}
           {isLoggedIn ? (
-            <div className="flex gap-3.5 text-lg items-center">
+            <div className="flex gap-6 text-lg items-center">
               {NAV_ICONS.map((icon) => (
                 icon.name.toLowerCase() === "search" ? (
                   <button onClick={toggleSearchNav} key={icon.name} aria-label="Toggle search">
                     {icon.icon}
                   </button>
                 ) : (
-                  <Link href={icon.href ?? "#"} key={icon.name} aria-label={icon.name}>
+                  <Link href={icon.href ?? "#"} key={icon.name} className="relative" aria-label={icon.name}>
                     {icon.icon}
+                    <Badge quantity={icon.quantity || 0}/>
                   </Link>
                 )
               ))}

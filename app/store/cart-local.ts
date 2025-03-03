@@ -1,7 +1,13 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+
 type Book = {
     id: string;
     title: string;
     price: number;
+    image:string | StaticImport;
+    pages:number;
+    author:string;
+    countInStock:number;
     quantity?: number;
   };
   

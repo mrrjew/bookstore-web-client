@@ -7,8 +7,13 @@ import { GrFavorite } from "react-icons/gr";
 import { FiShoppingCart } from "react-icons/fi";
 
 
+let cart_quantity,wishlist_quantity;
 
-
+if(typeof window !== 'undefined'){
+    cart_quantity = JSON.parse(localStorage.getItem('cart') || '[]').length;
+    wishlist_quantity = JSON.parse(localStorage.getItem('wishlist') || '[]').length;
+    console.log(JSON.parse(localStorage.getItem('cart') || '[]'))
+}
 
 export const NAV_SOCIALS:NavSoials[] = [
     {
@@ -43,11 +48,13 @@ export const NAV_ICONS: NavSoials[] = [
     name: "Wishlist",
     href: "/wishlist",
     icon: <GrFavorite />,
-  },
-  {
+    quantity:wishlist_quantity
+},
+{
     name: "Cart",
     href: "/cart",
     icon: <FiShoppingCart />,
+    quantity:cart_quantity
   },
 ];
 

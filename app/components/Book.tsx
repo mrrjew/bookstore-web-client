@@ -14,6 +14,7 @@ export default function Book({
   price,
   pages,
   language,
+  countInStock
 }: Books) {
   const [cartUpdated, setCartUpdated] = useState(false);
 
@@ -22,7 +23,11 @@ export default function Book({
       myCart.addBook({
         id: _id,
         title,
-        price
+        image,
+        price,
+        pages,
+        author,
+        countInStock
       });
       setCartUpdated(!cartUpdated);
     }else{

@@ -2,9 +2,17 @@
 
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
-import {cartBooks as books} from "@/app/data/books"
+import { myCart } from '@/app/store/cart-local'
+import Error from '@/app/components/Error'
+import { useState } from 'react'
 
 export default function Example() {
+  const [controlRerender,setControlRerender] = useState(false)
+  const cart_products = myCart.getCart()
+
+  const subTotal = cart_products.reduce((acc,product) => acc + product.price,0)
+  const delivery = 0.05 * subTotal
+  const tax = 0.06 * subTotal
 
   return (
     <div className="bg-white">
@@ -12,15 +20,17 @@ export default function Example() {
       <main className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
 
-        <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+        {
+          cart_products.length > 0 ? (
+            <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <section aria-labelledby="cart-heading" className="lg:col-span-7">
             <h2 id="cart-heading" className="sr-only">
               Items in your shopping cart
             </h2>
 
             <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
-              {books.map((book, bookIdx) => (
-                <li key={book._id} className="flex py-6 sm:py-10">
+              {cart_products.map((book, bookIdx) => (
+                <li key={book.id} className="flex py-6 sm:py-10">
                   <div className="shrink-0">
                     <img
                       alt={book.title}
@@ -34,7 +44,7 @@ export default function Example() {
                       <div>
                         <div className="flex justify-between">
                           <h3 className="text-sm">
-                            <a href={`/store/${book._id}`} className="font-medium text-gray-700 hover:text-gray-800">
+                            <a href={`/store/${book.id}`} className="font-medium text-gray-700 hover:text-gray-800">
                               {book.title}
                             </a>
                           </h3>
@@ -45,7 +55,7 @@ export default function Example() {
                             <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">{book.pages}</p>
                           ) : null}
                         </div>
-                        <p className="mt-1 text-sm font-medium text-gray-900">{book.price}</p>
+                        <p className="mt-1 text-sm font-medium text-gray-900">${book.price}</p>
                       </div>
 
                       <div className="mt-4 sm:mt-0 sm:pr-9">
@@ -74,7 +84,7 @@ export default function Example() {
                         <div className="absolute right-0 top-0">
                           <button type="button" className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
                             <span className="sr-only">Remove</span>
-                            <XMarkIconMini aria-hidden="true" className="size-5" />
+                            <XMarkIconMini onClick={() => {myCart.removeBook(book.id);setControlRerender(prev => !prev)}} aria-hidden="true" className="size-5" />
                           </button>
                         </div>
                       </div>
@@ -107,17 +117,17 @@ export default function Example() {
             <dl className="mt-6 space-y-4">
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-gray-600">Subtotal</dt>
-                <dd className="text-sm font-medium text-gray-900">$99.00</dd>
+                <dd className="text-sm font-medium text-gray-900">${subTotal}</dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="flex items-center text-sm text-gray-600">
-                  <span>Shipping estimate</span>
+                  <span>Delivery estimate</span>
                   <a href="#" className="ml-2 shrink-0 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Learn more about how shipping is calculated</span>
                     <QuestionMarkCircleIcon aria-hidden="true" className="size-5" />
                   </a>
                 </dt>
-                <dd className="text-sm font-medium text-gray-900">$5.00</dd>
+                <dd className="text-sm font-medium text-gray-900">${delivery}</dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="flex text-sm text-gray-600">
@@ -127,11 +137,11 @@ export default function Example() {
                     <QuestionMarkCircleIcon aria-hidden="true" className="size-5" />
                   </a>
                 </dt>
-                <dd className="text-sm font-medium text-gray-900">$8.32</dd>
+                <dd className="text-sm font-medium text-gray-900">${tax}</dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="text-base font-medium text-gray-900">Order total</dt>
-                <dd className="text-base font-medium text-gray-900">$112.32</dd>
+                <dd className="text-base font-medium text-gray-900">${subTotal + delivery + tax}</dd>
               </div>
             </dl>
 
@@ -145,6 +155,12 @@ export default function Example() {
             </div>
           </section>
         </form>
+          ):(
+            <div className='w-full flex items-center justify-center'> 
+              <Error title='No items found in cart' description='Visit the store page to add items to cart before checking out'/>
+            </div>
+          )
+        }
 
         {/* Related books */}
         <section aria-labelledby="related-heading" className="mt-24">
