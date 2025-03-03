@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FiShoppingCart } from 'react-icons/fi';
 import Link from 'next/link';
 import { myCart } from '../store/cart-local';
+import { myWishlist } from '../store/wishlist-local';
 
 export default function Book({
   _id,
@@ -17,6 +18,7 @@ export default function Book({
   countInStock
 }: Books) {
   const [cartUpdated, setCartUpdated] = useState(false);
+  const [wishlistUpdated, setWishlistUpdated] = useState(false);
 
   const addToCart = (_id: string) => {
     if (!myCart.verifyBookInCart(_id)) {
@@ -33,6 +35,24 @@ export default function Book({
     }else{
       myCart.removeBook(_id)
       setCartUpdated(!cartUpdated);
+    }
+  };
+
+  const addToWishList = (_id: string) => {
+    if (!myWishlist.verifyBookInWishlist(_id)) {
+      myWishlist.addBook({
+        id: _id,
+        title,
+        image,
+        price,
+        pages,
+        author,
+        countInStock
+      });
+      setWishlistUpdated(!wishlistUpdated);
+    }else{
+      myWishlist.removeBook(_id)
+      setWishlistUpdated(!wishlistUpdated);
     }
   };
 
@@ -58,15 +78,24 @@ export default function Book({
             <p className='text-sm font-semibold'>{language}</p>
           </div>
           <div className="flex gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="cursor-pointer text-cardinal/40 size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="cursor-pointer text-purple-600/60 size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-            </svg>
+            {
+              myWishlist.verifyBookInWishlist(_id) ? (
+                <svg onClick={() => addToWishList(_id)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 cursor-pointer text-cardinal/40">
+                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+              </svg>
+              ):
+              (
+              <svg onClick={() => addToWishList(_id)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="cursor-pointer text-cardinal/40 size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+              </svg>
+              )
+            }
+
+            <Link href={`/store/${_id}`}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="cursor-pointer text-blue-500/50 text-xl size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
             </svg>
+            </Link>
           </div>
         </div>
         <p>{description}</p>

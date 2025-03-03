@@ -5,20 +5,40 @@ import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMin
 import { myCart } from '@/app/store/cart-local'
 import Error from '@/app/components/Error'
 import { useState } from 'react'
+import Modal from '@/app/components/modals-double-action'
 
 export default function Example() {
   const [controlRerender,setControlRerender] = useState(false)
+  const [displayModal,setDisplayModal] = useState(false)
   const cart_products = myCart.getCart()
 
-  const subTotal = cart_products.reduce((acc,product) => acc + product.price,0)
-  const delivery = 0.05 * subTotal
-  const tax = 0.06 * subTotal
+  const subTotal = cart_products.reduce((acc, product) => acc + product.price * (product.quantity !== undefined ? product.quantity : 0), 0).toFixed(2);
+  const delivery = (0.05 * +subTotal).toFixed(2)
+  const tax = (0.06 * +subTotal).toFixed(2)
 
+  const updateProductQuantity = (id:string,e:number) => {
+    myCart.updateBook(id,e)
+    setControlRerender(!controlRerender)
+  }
+
+  const clearCart = () => {
+
+    myCart.clearCart()
+
+    setControlRerender(!controlRerender)
+  }
   return (
     <div className="bg-white">
 
       <main className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
+        <div className='flex justify-between items-center'>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
+          {
+            displayModal && 
+            <Modal title='Clear shopping cart' description='Are you sure you want to clear cart. Once cleared, products are not recoverable unless added to cart again' action='Clear' helperFunction={clearCart}/>
+          }
+          <button className={`underline underline-offset-2 ${cart_products.length == 0 && 'cursor-not-allowed'}`} onClick={() => {setDisplayModal(!displayModal);setControlRerender(!controlRerender)}}>Clear Cart</button>
+        </div>
 
         {
           cart_products.length > 0 ? (
@@ -61,9 +81,11 @@ export default function Example() {
                       <div className="mt-4 sm:mt-0 sm:pr-9">
                         <div className="inline-grid w-full max-w-16 grid-cols-1">
                           <select
+                            defaultValue={book.quantity}
                             id={`quantity-${bookIdx}`}
                             name={`quantity-${bookIdx}`}
                             aria-label={`Quantity, ${book.title}`}
+                            onChange={(e) => updateProductQuantity(book.id,+e.target.value)}
                             className="col-start-1 row-start-1 appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                           >
                             <option value={1}>1</option>
@@ -141,7 +163,7 @@ export default function Example() {
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="text-base font-medium text-gray-900">Order total</dt>
-                <dd className="text-base font-medium text-gray-900">${subTotal + delivery + tax}</dd>
+                <dd className="text-base font-medium text-gray-900">${(+subTotal + +delivery + +tax).toFixed(2)}</dd>
               </div>
             </dl>
 

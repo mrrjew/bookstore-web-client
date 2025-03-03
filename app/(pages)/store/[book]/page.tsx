@@ -4,6 +4,9 @@ import { CheckIcon, QuestionMarkCircleIcon, StarIcon } from '@heroicons/react/20
 import { ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { books } from '@/app/data/books'
 import { useParams } from 'next/navigation'
+import { myCart } from '@/app/store/cart-local'
+import { FiShoppingCart } from 'react-icons/fi'
+import { useState } from 'react'
 
 
 const reviews = { average: 4, totalCount: 1624 }
@@ -12,13 +15,40 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Book() {
+  const [cartUpdated, setCartUpdated] = useState(false);
 
   
   const {book} = useParams()
 
   const _book = books.filter((b) => b._id === book)[0]
   console.log(_book)
+
+  const {_id,
+    title,
+    image,
+    price,
+    pages,
+    author,
+    countInStock} = _book
+
+  const addToCart = (_id: string) => {
+      if (!myCart.verifyBookInCart(_id)) {
+        myCart.addBook({
+          id: _id,
+          title,
+          image,
+          price,
+          pages,
+          author,
+          countInStock
+        });
+        setCartUpdated(!cartUpdated);
+      }else{
+        myCart.removeBook(_id)
+        setCartUpdated(!cartUpdated);
+      }
+    };
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -118,12 +148,24 @@ export default function Example() {
                 </a>
               </div>
               <div className="mt-10">
-                <button
-                  type="submit"
+              <button onClick={() => addToCart(_id)} 
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-cardinal px-8 py-3 text-base font-medium text-white hover:bg-cardinal focus:outline-none focus:ring-2 focus:ring-cardinal focus:ring-offset-2 focus:ring-offset-gray-50"
-                >
-                  Add to cart
-                </button>
+                  >
+                {
+                  myCart.verifyBookInCart(_id) ? (
+                    <p className='flex gap-2 items-center'>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                      Book already in cart
+                    </p>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <FiShoppingCart className='cursor-pointer' />  Add to Cart
+                    </div>
+                  )
+                }
+              </button>
               </div>
               <div className="mt-6 text-center">
                 <a href="#" className="group inline-flex text-base font-medium">

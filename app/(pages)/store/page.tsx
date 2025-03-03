@@ -26,11 +26,22 @@ function StorePageContent() {
   }, [name]);
   
   // Filter books based on selected genre
+  const cleanString = (str:string) => str.toLowerCase().split(" ").join('');
+
   const booksReturned = selectedGenre === 'All'
-  ? books
-  : books.filter(book => {
-    return selectedGenre.toLowerCase().split(" ").join('').includes(book.category.toLowerCase().split(" ").join(''))
-  });
+    ? books
+    : books.filter(book => {
+      const cleanedGenre = cleanString(selectedGenre);
+      const bookInfo = [
+        book.category,
+        book.title,
+        book.author,
+        book.description
+      ].map(cleanString).join('');
+  
+      return bookInfo.includes(cleanedGenre);
+    });
+  
 
 
   return (

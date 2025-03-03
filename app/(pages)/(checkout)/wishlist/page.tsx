@@ -1,25 +1,46 @@
 'use client'
 
-import { CheckIcon, ClockIcon } from '@heroicons/react/20/solid'
-import {cartBooks as books} from "@/app/data/books"
+import { myWishlist } from '@/app/store/wishlist-local'
+import { useState } from 'react'
+import { CheckIcon, ClockIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
+import Error from '@/app/components/Error'
+import Modal from '@/app/components/modals-double-action'
 
 export default function Book() {
+  const [controlRerender,setControlRerender] = useState(false)
+  const Wishlist_products = myWishlist.getWishlist()
+  const [displayModal,setDisplayModal] = useState(false)
 
+  const clearWishlist = () => {
+
+    myWishlist.clearWishlist()
+
+    setControlRerender(!controlRerender)
+  }
   return (
     <div className="bg-white">
 
       <main className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
+         <div className='flex justify-between items-center'>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Wishlist</h1>
+          {
+            displayModal && 
+            <Modal title='Clear Wishlist' description='Are you sure you want to clear Wishlist. Once cleared, products are not recoverable unless added to Wishlist again' action='Clear' helperFunction={clearWishlist}/>
+          }
+          <button className={`underline underline-offset-2 ${Wishlist_products.length == 0 && 'cursor-not-allowed'}`} onClick={() => {setDisplayModal(!displayModal);setControlRerender(!controlRerender)}}>Clear Wishlist</button>
+        </div>
 
-        <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start flex lg:gap-x-12 xl:gap-x-16">
-          <section aria-labelledby="cart-heading" className="lg:col-span-7">
-            <h2 id="cart-heading" className="sr-only">
-              Items in your shopping cart
+        {
+          Wishlist_products.length > 0 ? (
+            <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start flex lg:gap-x-12 xl:gap-x-16">
+          <section aria-labelledby="Wishlist-heading" className="lg:col-span-7">
+            <h2 id="Wishlist-heading" className="sr-only">
+              Items in your shopping Wishlist
             </h2>
 
             <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
-              {books.map((book) => (
-                <li key={book._id} className="flex py-6 sm:py-10">
+              {Wishlist_products.map((book) => (
+                <li key={book.id} className="flex py-6 sm:py-10">
                   <div className="shrink-0">
                     <img
                       alt={book.title}
@@ -33,7 +54,7 @@ export default function Book() {
                       <div>
                         <div className="flex justify-between">
                           <h3 className="text-sm">
-                            <a href={`/store/${book._id}`} className="font-medium text-gray-700 hover:text-gray-800">
+                            <a href={`/store/${book.id}`} className="font-medium text-gray-700 hover:text-gray-800">
                               {book.title}
                             </a>
                           </h3>
@@ -45,6 +66,13 @@ export default function Book() {
                           ) : null}
                         </div>
                         <p className="mt-1 text-sm font-medium text-gray-900">{book.price}</p>
+                      </div>
+
+                      <div className="absolute right-0 top-0">
+                          <button type="button" className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
+                            <span className="sr-only">Remove</span>
+                            <XMarkIconMini onClick={() => {myWishlist.removeBook(book.id);setControlRerender(!controlRerender)}} aria-hidden="true" className="size-5" />
+                          </button>
                       </div>
                     </div>
 
@@ -63,6 +91,11 @@ export default function Book() {
             </ul>
           </section>
         </form>
+          ):  <div className='w-full flex items-center justify-center'> 
+                <Error title='No items found in wishlist' description='Visit the store page to add items to wishlist and checkout later'/>
+              </div>
+
+        }
 
         {/* Related books */}
         <section aria-labelledby="related-heading" className="mt-24">

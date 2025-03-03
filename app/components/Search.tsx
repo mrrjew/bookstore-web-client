@@ -32,7 +32,7 @@ export default function Search(){
 
             <form onSubmit={(e) => ForwardPacket(e)} >
                 <div className='w-[70vw] h-max flex gap-2 rounded-xl z-10 p-2 sm:mt-60 mt-40 bg-cardinal bg-gradient-to-r from-cardinal to-purple-700'>
-                <input className="bg-slate-800/60 border-0 outline-0 rounded-lg py-4 px-2 !text-white block-heading w-full h-full placeholder:text-white" placeholder="Enter name of book" autoFocus onChange={(e) => GetPacket(e)}/>
+                <input className="bg-slate-800/60 border-0 outline-0 rounded-lg py-4 px-2 !text-white block-heading w-full h-full placeholder:text-white" placeholder="Enter title,author,category or keyword in book" autoFocus onChange={(e) => GetPacket(e)}/>
                 </div>
             </form>
     </div>
