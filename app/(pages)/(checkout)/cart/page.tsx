@@ -4,10 +4,10 @@ import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
 import { myCart } from '@/app/store/cart-local'
 import Error from '@/app/components/Error'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Modal from '@/app/components/modals-double-action'
 
-export default function Example() {
+export function Example() {
   const [controlRerender,setControlRerender] = useState(false)
   const [displayModal,setDisplayModal] = useState(false)
   const cart_products = myCart.getCart()
@@ -194,5 +194,13 @@ export default function Example() {
       </main>
 
     </div>
+  )
+}
+
+export default function Page(){
+  return (
+  <Suspense fallback='Loading...'>
+    <Example />
+  </Suspense>
   )
 }

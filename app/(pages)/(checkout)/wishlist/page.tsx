@@ -1,12 +1,12 @@
 'use client'
 
 import { myWishlist } from '@/app/store/wishlist-local'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { CheckIcon, ClockIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
 import Error from '@/app/components/Error'
 import Modal from '@/app/components/modals-double-action'
 
-export default function Book() {
+export function Book() {
   const [controlRerender,setControlRerender] = useState(false)
   const Wishlist_products = myWishlist.getWishlist()
   const [displayModal,setDisplayModal] = useState(false)
@@ -107,5 +107,14 @@ export default function Book() {
       </main>
 
     </div>
+  )
+}
+
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Book />
+    </Suspense>
   )
 }
