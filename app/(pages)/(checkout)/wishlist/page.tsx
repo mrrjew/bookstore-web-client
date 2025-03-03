@@ -6,7 +6,7 @@ import { CheckIcon, ClockIcon, XMarkIcon as XMarkIconMini } from '@heroicons/rea
 import Error from '@/app/components/Error'
 import Modal from '@/app/components/modals-double-action'
 
-export function Book() {
+function Book() {
   const [controlRerender,setControlRerender] = useState(false)
   const Wishlist_products = myWishlist.getWishlist()
   const [displayModal,setDisplayModal] = useState(false)

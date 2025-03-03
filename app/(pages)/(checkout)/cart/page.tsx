@@ -7,7 +7,7 @@ import Error from '@/app/components/Error'
 import { Suspense, useState } from 'react'
 import Modal from '@/app/components/modals-double-action'
 
-export function Example() {
+function Example() {
   const [controlRerender,setControlRerender] = useState(false)
   const [displayModal,setDisplayModal] = useState(false)
   const cart_products = myCart.getCart()
