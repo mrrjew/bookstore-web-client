@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import '../styles/style.css';
-import { Parallax, Pagination, Navigation } from 'swiper/modules';
+import { Parallax, Pagination, Navigation, Autoplay } from 'swiper/modules';
 
 export type Testimonial = {
   content: string;
@@ -26,10 +26,11 @@ export default function Swiperrr({ data }: SwiperrrProps) {
       <Swiper
         ref={swiperRef}
         speed={600}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         parallax={true}
         pagination={{ clickable: true, el: '.custom-pagination' }}
         navigation={{ nextEl: '.custom-next', prevEl: '.custom-prev' }}
-        modules={[Parallax, Pagination, Navigation]}
+        modules={[Parallax, Pagination, Navigation,Autoplay]}
         className="mySwiper"
       >
         <div
@@ -47,12 +48,6 @@ export default function Swiperrr({ data }: SwiperrrProps) {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* Custom Navigation Buttons */}
-      <div className="custom-navigation">
-        <button className="custom-prev !rounded-md">Previous</button>
-        <button className="custom-next !rounded-md !shadow-md">Next</button>
-      </div>
 
       {/* Custom Pagination */}
       <div className="custom-pagination swiper-pagination"></div>

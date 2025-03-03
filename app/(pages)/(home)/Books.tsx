@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import { BiSolidChevronLeft, BiSolidChevronRight } from "react-icons/bi";
 import { books } from "@/app/data/books";
 import Book from "@/app/components/Book";
-import { Pagination, Navigation, Mousewheel } from "swiper/modules";
+import { Pagination, Navigation,Autoplay, Mousewheel } from "swiper/modules";
 
 export default function Books() {
   const swiperRef = useRef<SwiperRef>(null);
@@ -38,6 +38,7 @@ export default function Books() {
         ref={swiperRef}
         spaceBetween={14}
         mousewheel={{ forceToAxis: true }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         slidesPerView={3}
         breakpoints={{
           0: {
@@ -53,9 +54,10 @@ export default function Books() {
             spaceBetween: 14,
           },
         }}
+
         pagination={{ clickable: true, el: ".custom-pagination" }}
         navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
-        modules={[Pagination, Navigation, Mousewheel]}
+        modules={[Pagination, Navigation, Autoplay,Mousewheel]}
         className="relative my-8 w-screen h-max"
       >
         {books.map((book) => (
