@@ -39,6 +39,8 @@ function StorePageContent() {
         book.description
       ].map(cleanString).join('');
   
+      console.log(cleanedGenre)
+      console.log(bookInfo)
       return bookInfo.includes(cleanedGenre);
     });
   

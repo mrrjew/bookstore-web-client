@@ -12,7 +12,6 @@ let cart_quantity,wishlist_quantity;
 if(typeof window !== 'undefined'){
     cart_quantity = JSON.parse(localStorage.getItem('cart') || '[]').length;
     wishlist_quantity = JSON.parse(localStorage.getItem('wishlist') || '[]').length;
-    console.log(JSON.parse(localStorage.getItem('cart') || '[]'))
 }
 
 export const NAV_SOCIALS:NavSoials[] = [

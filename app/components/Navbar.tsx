@@ -116,8 +116,9 @@ export default function Navbar() {
                     {icon.icon}
                   </button>
                 ) : (
-                  <Link href={icon.href ?? "#"} key={icon.name} aria-label={icon.name}>
+                  <Link href={icon.href ?? "#"} key={icon.name} className="relative" aria-label={icon.name}>
                     {icon.icon}
+                    <Badge quantity={icon.quantity || 0}/>
                   </Link>
                 )
               ))}
@@ -135,7 +136,7 @@ export default function Navbar() {
         {showNav && (
           <div className="md:hidden z-10 flex flex-col absolute max-sm:top-16 max-md:top-22 left-0 bg-white w-full pt-10 pb-10 rounded-b-lg shadow-light gap-12 justify-center items-center">
             {NAVIGATION.map((nav) => (
-              <Link key={nav.name} href={nav.href} className={`${pathname.includes(nav.href) ? "text-cardinal" : ""}`}>
+              <Link onClick={() => setShowNav(false)} key={nav.name} href={nav.href} className={`${pathname === nav.href ? "text-cardinal" : ""}`}>
                 {nav.name}
               </Link>
             ))}
